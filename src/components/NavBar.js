@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Logo from './Logo'
 import BurgerButton from './BurgerButton'
+import { CartWidget } from './CartWidget'
 
 function Navbar() {
     const [clicked, setClicked] = useState(false)
@@ -18,6 +19,7 @@ function Navbar() {
                     <a onClick={handleClick} href="#h">NOSOTROS</a>
                     <a onClick={handleClick} href="#h">CONTACTO</a>
                 </div>
+                <CartWidget />
                 <div className='burger'>
                     <BurgerButton clicked={clicked} handleClick={handleClick} />
                 </div>
