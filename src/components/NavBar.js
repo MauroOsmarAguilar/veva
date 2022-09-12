@@ -51,19 +51,23 @@ const NavContainer = styled.nav`
         margin-right: auto;
         text-align: center;
         transition: all .5s ease;
-        a {
-            color: white;
+
+        a{
+            color: #F2F2F2;
             font-size: 2rem;
             display: block;
         }
+        
         @media(min-width: 768px){
             position: initial;
             margin: 0;
-            a {
+
+            a{
                 font-size: 1rem;
-                color: white;
+                color: #F2F2F2;
                 display: inline;
             }
+
         display: block;
         }
     }
@@ -78,6 +82,8 @@ const NavContainer = styled.nav`
         left: 0;
         right: 0;
         text-align: center;
+        z-index: 2;
+
         a {
             font-family: 'Montserrat';
             font-size: 2rem;
@@ -87,6 +93,8 @@ const NavContainer = styled.nav`
     }
 
     .burger {
+        z-index: 3;
+
         @media(min-width: 768px){
             display: none;
         }
@@ -107,5 +115,6 @@ const BgDiv = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: 1;
     }
 `

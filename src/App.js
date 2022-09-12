@@ -5,8 +5,8 @@ import { ItemListContainer } from './components/ItemListContainer'
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <ItemListContainer greeting="Somos Veva" />
+        <Navbar />
+        <ItemListContainer greeting="Somos Veva" />
     </div>
   )
 }
