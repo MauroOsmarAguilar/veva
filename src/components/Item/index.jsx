@@ -7,7 +7,7 @@ const Item = ({ product }) => {
         <ProductContainer>
             <div className='product'>
                 <div className='product__container'>
-                    <img src={product.image} alt={product.image}/>
+                    <img src={product.image} alt={product.name}/>
                     <div className='product__container__title'>
                         <h4>{product.category}</h4>
                         <h2>{product.name}</h2>

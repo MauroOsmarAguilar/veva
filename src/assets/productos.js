@@ -4,6 +4,7 @@ export const products = [
         image: "./img/stock/vevaclassic.jpg",
         name: "VEVA CLASSIC",
         category: "Remera",
+        detail: "Prenda color negra con logo de marca en negro brillante.",
         price: 2900,
         stock: 10
     },

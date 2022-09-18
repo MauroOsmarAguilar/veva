@@ -1,12 +1,14 @@
 import React from 'react'
 import Navbar from './components/NavBar'
 import { ItemListContainer } from './components/ItemListContainer'
+import { ItemDetailContainer } from './components/ItemDetailContainer'
 
 const App = () => {
   return (
     <div>
         <Navbar />
-        <ItemListContainer greeting="Somos Veva" />
+        <ItemDetailContainer />
+        {/* <ItemListContainer greeting="Somos Veva" /> */}
     </div>
   )
 }
