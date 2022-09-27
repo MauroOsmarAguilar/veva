@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ItemCount } from '../ItemCount'
+import { Link } from 'react-router-dom'
 
 const Item = ({ product }) => {
     return(
@@ -13,6 +14,7 @@ const Item = ({ product }) => {
                         <h2>{product.name}</h2>
                     </div>
                     <h3>${product.price}.-</h3>
+                    <Link to={`../product/${product.id}`}>Ver detalle</Link>
                     <ItemCount initial={1} stock={product.stock} onAdd={() => {}}/>
                 </div>
             </div>

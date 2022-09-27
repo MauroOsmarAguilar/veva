@@ -66,8 +66,7 @@ const ProductDetailContainer = styled.div`
             h3{
                 border: 1px solid #f2f2f2af;
                 border-radius: 5px;
-                padding: 5px;
-                align-text: center;
+                padding: 10px;
             }
         }
 

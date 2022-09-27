@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Logo from './Logo'
 import BurgerButton from './BurgerButton'
 import { CartWidget } from './CartWidget'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
     const [clicked, setClicked] = useState(false)
@@ -12,14 +13,20 @@ function Navbar() {
     return (
         <>
             <NavContainer>
-                <Logo/>
+                <Link to={"/"}>
+                    <Logo/>
+                </Link>
                 <div className={`links ${clicked ? 'active' : ''}`}>
+                <Link to={"/"}>
                     <a onClick={handleClick} href="#h">HOME</a>
+                </Link>
                     <a onClick={handleClick} href="#h">DESIGN</a>
                     <a onClick={handleClick} href="#h">NOSOTROS</a>
                     <a onClick={handleClick} href="#h">CONTACTO</a>
                 </div>
-                <CartWidget />
+                <Link to={"/cart"}>
+                    <CartWidget />
+                </Link>
                 <div className='burger'>
                     <BurgerButton clicked={clicked} handleClick={handleClick} />
                 </div>

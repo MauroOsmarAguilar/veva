@@ -1,9 +1,9 @@
 export const products = [
     {
         id: 1,
-        image: "./img/stock/vevaclassic.jpg",
+        image: "../img/stock/vevaclassic.jpg",
         name: "VEVA CLASSIC",
-        category: "Remera",
+        category: "remera",
         detail: "Prenda color negra con logo de marca en negro brillante.",
         price: 2900,
         stock: 10
@@ -12,7 +12,8 @@ export const products = [
         id: 2,
         image: "../img/stock/acidcat.jpg",
         name: "ACIDCAT",
-        category: "Remera",
+        category: "remera",
+        detail: "Prenda color blanca con diseño falopa.",
         price: 2000,
         stock: 5
     },
@@ -20,7 +21,8 @@ export const products = [
         id: 3,
         image: "../img/stock/sad.jpg",
         name: "SAD",
-        category: "Remera",
+        category: "remera",
+        detail: "Prenda color blanca re canchera.",
         price: 2000,
         stock: 10
     },
@@ -28,7 +30,8 @@ export const products = [
         id: 4,
         image: "../img/stock/smile.jpg",
         name: "SMILE",
-        category: "Buzo",
+        category: "buzo",
+        detail: "Prenda color blanca re canchera.",
         price: 5590,
         stock: 6
     },
@@ -36,7 +39,8 @@ export const products = [
         id: 5,
         image: "../img/stock/everythingsnice.jpg",
         name: "EVERYTHING'S NICE",
-        category: "Buzo",
+        category: "buzo",
+        detail: "Prenda color blanca re canchera.",
         price: 6990,
         stock: 8
     },
@@ -44,7 +48,8 @@ export const products = [
         id: 6,
         image: "../img/stock/alien.jpg",
         name: "ALIEN",
-        category: "Buzo",
+        category: "buzo",
+        detail: "Prenda color blanca re canchera.",
         price: 6990,
         stock: 4
     },
@@ -52,7 +57,8 @@ export const products = [
         id: 7,
         image: "../img/stock/totesmilesad.jpg",
         name: "TOTE SMILESAD",
-        category: "Totebag",
+        category: "totebag",
+        detail: "Hacer los mandados nunca fue tan canchero.",
         price: 890,
         stock: 10
     },
@@ -60,7 +66,8 @@ export const products = [
         id: 8,
         image: "../img/stock/toteacid.jpg",
         name: "TOTE ACID",
-        category: "Totebag",
+        category: "totebag",
+        detail: "Hacer los mandados nunca fue tan canchero.",
         price: 890,
         stock: 10
     }
