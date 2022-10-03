@@ -13,16 +13,12 @@ function Navbar() {
     return (
         <>
             <NavContainer>
-                <Link to={"/"}>
-                    <Logo/>
-                </Link>
+                <Logo to={"/"} className='navlist'/>
                 <div className={`links ${clicked ? 'active' : ''}`}>
-                <Link to={"/"}>
-                    <a onClick={handleClick} href="#h">HOME</a>
-                </Link>
-                    <a onClick={handleClick} href="#h">DESIGN</a>
-                    <a onClick={handleClick} href="#h">NOSOTROS</a>
-                    <a onClick={handleClick} href="#h">CONTACTO</a>
+                    <Link onClick={handleClick} to="/" className='navlist'>HOME</Link>
+                    <Link onClick={handleClick} to="#h" className='navlist'>DESIGN</Link>
+                    <Link onClick={handleClick} to="#h" className='navlist'>NOSOTROS</Link>
+                    <Link onClick={handleClick} to="#h" className='navlist'>CONTACTO</Link>
                 </div>
                 <Link to={"/cart"}>
                     <CartWidget />
@@ -45,7 +41,7 @@ const NavContainer = styled.nav`
     align-items: center;
     justify-content: space-around;
 
-    a {
+    .navlist {
         color: #F2F2F2;
         text-decoration: none;
         margin-right: 1rem;
@@ -59,7 +55,7 @@ const NavContainer = styled.nav`
         text-align: center;
         transition: all .5s ease;
 
-        a{
+        .navlist {
             color: #F2F2F2;
             font-size: 2rem;
             display: block;
@@ -69,7 +65,7 @@ const NavContainer = styled.nav`
             position: initial;
             margin: 0;
 
-            a{
+            .navlist {
                 font-size: 1rem;
                 color: #F2F2F2;
                 display: inline;
@@ -91,7 +87,7 @@ const NavContainer = styled.nav`
         text-align: center;
         z-index: 2;
 
-        a {
+        .navlist {
             font-family: 'Montserrat';
             font-size: 2rem;
             margin-top: 1rem;

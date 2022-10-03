@@ -6,7 +6,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     const [count, setCount] = useState(initial)
 
     const increase = () => count < stock && setCount(count + 1)
-    const decrease = () => count > initial && setCount(count - 1)
+    const decrease = () => count > initial && setCount(count - 1) 
 
     return(
         <CountContainer>
@@ -14,7 +14,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
                     <button className='count__container__button' onClick={decrease}>-</button>
                     <p className='count__container__number'>{count}</p>
                     <button className='count__container__button' onClick={increase}>+</button>
-                    <button className='count__container__button' onClick={onAdd}>Agregar</button>
+                    <button className='count__container__button' onClick={() => onAdd(count)}>Agregar</button>
             </div>
         </CountContainer>
     )
@@ -28,24 +28,24 @@ const CountContainer = styled.div`
         justify-content: space-between;
         padding: 5px;
                 
-            .count__container__button{
-                padding: 15px;
-                border: none;
-                border-radius: 5px;
-                background-color: #252525;
-                color: #f2f2f2;
-                font-family: 'Montserrat';
-                cursor: pointer;
-                transition: .3s cubic-bezier(.8, .5, .2);
-                transition-duration: 500ms;
-            }
+        .count__container__button{
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #252525;
+            color: #f2f2f2;
+            font-family: 'Montserrat';
+            cursor: pointer;
+            transition: .3s cubic-bezier(.8, .5, .2);
+            transition-duration: 500ms;
+        }
 
-            .count__container__button:hover{
-                background-color: #353535;
-            }
+        .count__container__button:hover{
+            background-color: #353535;
+        }
 
-            .count__container__number{
-                border: none;
-            }       
+        .count__container__number{
+            border: none;
+        }       
     }
 `

@@ -3,14 +3,19 @@ import styled from 'styled-components'
 import { ItemCount } from '../ItemCount'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCartContext } from '../../context/CartContext'
 
 const ItemDetail = ({ listProduct }) => {
 
     const [isAdded, setIsAdded] = useState(false)
 
-    const onAdd = () => {
+    const { addToCart } = useCartContext()
+
+    const onAdd = (quantity) => {
+        addToCart(listProduct, quantity)
         setIsAdded(true)
     }
+    
 
     return(
         <>
@@ -34,7 +39,8 @@ const ItemDetail = ({ listProduct }) => {
                                 <ItemCount initial={1} stock={listProduct.stock} onAdd={onAdd}/>
                             }                            
                             <div className='product__detail__container__info__i'>
-                                <p>Los tiempos previstos de producción pueden ser entre 2 a 5 días hábiles. Si la prenda ya está en stock, se coordina el envío y entrega al día siguiente o cuando lo prefieras.</p>                            </div>
+                                <p>Los tiempos previstos de producción pueden ser entre 2 a 5 días hábiles. Si la prenda ya está en stock, se coordina el envío y entrega al día siguiente o cuando lo prefieras.</p>                            
+                            </div>
                         </div>
                     </div>
                 </div>

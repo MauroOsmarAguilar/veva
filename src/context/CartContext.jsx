@@ -12,7 +12,7 @@ export function CartContextProvider({ children }) {
     const addToCart = (item, quantity) => {
         if (isInCart(item.id)) {
             const newCart = cartList.map(prod => {
-                if (prod.id === item.id){
+                if (prod.id === item.id) {
                     const newQuantity = prod.quantity + quantity
                     return {...prod, quantity: newQuantity}
                 } else {
@@ -26,7 +26,7 @@ export function CartContextProvider({ children }) {
         }
     }
 
-    const removeProduct = (id) => setCartList(cartList.filter(prod => prod.id != id))
+    const removeProduct = (id) => setCartList(cartList.filter(prod => prod.id !== id))
 
     const cleanCart = () => setCartList([])
 
@@ -45,6 +45,7 @@ export function CartContextProvider({ children }) {
             cleanCart,
             totalPrice,
             totalQuantity
+            
         }}>
             {children}
         </CartContext.Provider>

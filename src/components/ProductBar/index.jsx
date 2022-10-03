@@ -6,9 +6,9 @@ function ProductBar() {
     return (
         <>
             <ProductBarContainer>
-                <Link to="category/remera">REMERAS</Link>
-                <Link to="category/buzo">BUZOS</Link>
-                <Link to="category/totebag">TOTEBAGS</Link>
+                <Link className='ProductBar__list' to="category/remera">REMERAS</Link>
+                <Link className='ProductBar__list' to="category/buzo">BUZOS</Link>
+                <Link className='ProductBar__list' to="category/totebag">TOTEBAGS</Link>
             </ProductBarContainer>
         </>
   )
@@ -29,7 +29,7 @@ const ProductBarContainer = styled.div`
     letter-spacing: 5px;
     
 
-    a{
+    .ProductBar__list{
         text-decoration: none;
         color: #F2F2F2;
     }
