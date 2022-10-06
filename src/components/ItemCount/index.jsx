@@ -8,13 +8,15 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     const increase = () => count < stock && setCount(count + 1)
     const decrease = () => count > initial && setCount(count - 1) 
 
+    const handleclick = () => onAdd(count)
+
     return(
         <CountContainer>
             <div className='count__container'>
                     <button className='count__container__button' onClick={decrease}>-</button>
                     <p className='count__container__number'>{count}</p>
                     <button className='count__container__button' onClick={increase}>+</button>
-                    <button className='count__container__button' onClick={() => onAdd(count)}>Agregar</button>
+                    <button className='count__container__button' onClick={handleclick}>Agregar</button>
             </div>
         </CountContainer>
     )

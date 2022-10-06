@@ -15,7 +15,6 @@ const ItemDetail = ({ listProduct }) => {
         addToCart(listProduct, quantity)
         setIsAdded(true)
     }
-    
 
     return(
         <>
