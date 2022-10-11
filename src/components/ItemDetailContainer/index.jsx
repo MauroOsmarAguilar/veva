@@ -23,7 +23,10 @@ const ItemDetailContainer = () => {
 
     return(
         <>
-            {!loading ? <ItemDetail listProduct={listProduct} /> : <Spinner />}
+            {!loading ? 
+                <ItemDetail listProduct={listProduct} />
+            : 
+                <Spinner />}
         </>
     )
 }

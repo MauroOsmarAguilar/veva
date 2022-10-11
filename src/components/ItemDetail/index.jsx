@@ -56,7 +56,10 @@ const ProductDetailContainer = styled.div`
         justify-content: center;
         alig-items: center;
         align-self: center;
-        max-width: 728px;
+        max-width: 800px;
+        text-decoration: none;
+        margin: 0 auto;
+        
 
         .product__detail__container{
             display: flex;
@@ -66,7 +69,7 @@ const ProductDetailContainer = styled.div`
 
             img{
                 margin: 10px;
-                max-width: 250px;
+                max-width: 350px;
                 border-radius: 5px;
             }
         }    
@@ -116,7 +119,6 @@ const ProductDetailContainer = styled.div`
             color: #f2f2f2;
             font-family: 'Montserrat';
             text-align: center;
-            text-decoration: none;
             cursor: pointer;
             transition: .3s cubic-bezier(.8, .5, .2);
             transition-duration: 500ms;
@@ -124,6 +126,16 @@ const ProductDetailContainer = styled.div`
 
         .product__detail__container__info__cart:hover{
             background-color: #353535;
+        }
+    }
+
+    @media (max-width: 600px){
+        .product__detail__container{
+            flex-wrap: wrap;
+
+            img{
+                min-width: 95%;
+            }
         }
     }
 `

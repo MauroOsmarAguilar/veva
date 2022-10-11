@@ -6,7 +6,9 @@ const ItemList = ({ listProducts }) => {
         <>
             {listProducts.map((prod, i) => <Item key={`${prod.id}-${i}`} product={prod}/>)}
         </>
+
     )
 }
 
 export { ItemList } 
+

@@ -16,7 +16,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
                     <button className='count__container__button' onClick={decrease}>-</button>
                     <p className='count__container__number'>{count}</p>
                     <button className='count__container__button' onClick={increase}>+</button>
-                    <button className='count__container__button' onClick={handleclick}>Agregar</button>
+                    <button className='count__container__button__add' onClick={handleclick}>Agregar</button>
             </div>
         </CountContainer>
     )
@@ -47,7 +47,26 @@ const CountContainer = styled.div`
         }
 
         .count__container__number{
+            font-variant-numeric: tabular-nums;
+            align-self: center;
             border: none;
-        }       
+        }
+
+        .count__container__button__add{
+            width: 50%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #252525;
+            color: #f2f2f2;
+            font-family: 'Montserrat';
+            cursor: pointer;
+            transition: .3s cubic-bezier(.8, .5, .2);
+            transition-duration: 500ms;
+        }
+
+        .count__container__button__add:hover{
+            background-color: #353535;
+        }
     }
 `

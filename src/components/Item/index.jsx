@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ItemCount } from '../ItemCount'
 import { Link } from 'react-router-dom'
 
 const Item = ({ product }) => {
@@ -14,8 +13,9 @@ const Item = ({ product }) => {
                         <h2>{product.name}</h2>
                     </div>
                     <h3>${product.price}.-</h3>
-                    <Link to={`../product/${product.id}`}>Ver detalle</Link>
-                    <ItemCount initial={1} stock={product.stock} onAdd={() => {}}/>
+                    <Link to={`../product/${product.id}`} className="product__container__button">
+                        <h3 className='effect-underline'>VER MAS</h3>
+                    </Link>
                 </div>
             </div>
         </ProductContainer>
@@ -28,6 +28,7 @@ const ProductContainer = styled.div`
     .product{
         display: flex;
         justify-content: center;
+        text-align: center;
         color: #f2f2f2;
         font-family: 'Montserrat';
 
@@ -53,7 +54,6 @@ const ProductContainer = styled.div`
             }
             
             .product__container__title{
-                border: 1px solid;
                 margin-top: -55px;
                 text-shadow: -1px 1px 5px rgba(0,0,0,1);
                 
@@ -67,8 +67,50 @@ const ProductContainer = styled.div`
                     font-weight: lighter;
                 }
             }
+
+            .product__container__button{
+                display: inline-block;
+                position: relative;
+                margin: -10px;
+                justify-content: center;
+                text-decoration: none;
+                cursor: pointer;
+            
+                h3{
+                    color: #F2F2F2;
+                    display: inline-block;
+                    position: relative;
+                    letter-spacing: 2px;
+                    border: none;
+                    font-size: 14px;
+                    height: 0.5em;
+                }
+
+                h3.effect-underline:after{
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    display: inline-block;
+                    height: 0.5em;
+                    width: 100%;
+                    border-bottom: 1px solid;
+                    margin-top: 10px;
+                    opacity: 0;
+                    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                    transition: opacity 0.35s, transform 0.35s;
+                    -webkit-transform: scale(0,1);
+                    transform: scale(0,1);
+                }
+                  
+                h3.effect-underline:hover:after {
+                    opacity: 1;
+                    -webkit-transform: scale(1);
+                    transform: scale(1);
+                }
+            }
             
             h3{
+                letter-spacing: 1px;
                 font-size: 16px;
             }
         }

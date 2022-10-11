@@ -6,9 +6,18 @@ function ProductBar() {
     return (
         <>
             <ProductBarContainer>
-                <Link className='ProductBar__list' to="category/remera">REMERAS</Link>
-                <Link className='ProductBar__list' to="category/buzo">BUZOS</Link>
-                <Link className='ProductBar__list' to="category/totebag">TOTEBAGS</Link>
+                <div className='container__list'>
+                    <Link className='container__list__item' to="category/remera" data-text="REMERAS">REMERAS</Link>
+                </div>
+                <div className='container__list'>
+                    <Link className='container__list__item' to="category/buzo" data-text="BUZOS">BUZOS</Link>
+                </div>
+                <div className='container__list'>
+                    <Link className='container__list__item' to="category/totebag" data-text="TOTEBAGS">TOTEBAGS</Link>
+                </div>
+                <div className='container__list'>
+                    <Link className='container__list__item' to="category/medias" data-text="MEDIAS">MEDIAS</Link>
+                </div>
             </ProductBarContainer>
         </>
   )
@@ -18,7 +27,7 @@ export default ProductBar
 
 const ProductBarContainer = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 5px;
     background-color: #151515;
     border-style: solid;
@@ -26,14 +35,46 @@ const ProductBarContainer = styled.div`
     border-color: #3A3B3Caf;
     font-size: 1rem;
     font-weight: bold;
-    letter-spacing: 5px;
+    letter-spacing: 5px;    
     
-
-    .ProductBar__list{
-        text-decoration: none;
-        color: #F2F2F2;
+    .container__list{
+        position: relative;
+        display: inline-block;
+        padding: 0px 10px 0px 10px;
+        cursor: pointer;
     }
 
+    .container__list::before{
+        content: "";
+        width: 0%;
+        height: 100%;
+        position: absolute;
+        background: #f2f2f2;
+        right: 0;
+        top: 0;
+        transition: 0.3s;
+    }
+
+    .container__list:hover .container__list__item::before,.container__list:hover::before{
+        width: 100%;
+    }
+
+    .container__list__item{
+        text-transform: uppercase;
+        text-decoration: none;   
+        position: relative;
+        color: #f2f2f2;
+    }
+    
+    .container__list__item::before{
+        content: attr(data-text);
+        position: absolute;
+        color: #151515;
+        width: 0;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+}
 `
 
 
