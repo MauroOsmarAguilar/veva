@@ -1,9 +1,11 @@
 import { ItemList } from '../ItemList'
-import { products } from '../../assets/productos'
-import { customFetch } from '../../Utils/customFetch'
+/* import { products } from '../../assets/productos' */
+/* import { customFetch } from '../../Utils/customFetch' */
 import { useState, useEffect } from 'react'
 import { Spinner } from '../Spinner'
 import { useParams } from 'react-router-dom'
+import { db } from '../../firebase/firebase'
+import { getDocs, collection, query, where } from 'firebase/firestore'
 
 const ItemListContainer = ({ greeting }) => {
 
@@ -13,7 +15,25 @@ const ItemListContainer = ({ greeting }) => {
     const { category } = useParams()
 
     useEffect(() => {
-        setLoading(true)
+
+        const productsCollection = collection(db, 'products')
+        const productCategory = query(productsCollection, where('category', '==', `${category}`))
+        const urlCategory = (category === undefined ? productsCollection : productCategory)
+        getDocs(urlCategory)
+            .then((data) => {
+                    const list = data.docs.map((product) => {
+                    return {
+                        ...product.data(),
+                        id: product.id
+                    }
+                })
+                setListProducts(list)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+
+        /* setLoading(true)
         customFetch(products)
             .then(res => {
                 if (category) {
@@ -23,7 +43,7 @@ const ItemListContainer = ({ greeting }) => {
                     setLoading(false)
                     setListProducts(res)
                 }
-            })
+            })*/
     }, [category])
 
     return (

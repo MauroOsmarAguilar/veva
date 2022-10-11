@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { products } from '../../assets/productos'
-import { customFetch } from '../../Utils/customFetch'
 import { ItemDetail } from '../ItemDetail'
 import { Spinner } from '../Spinner'
 import { useParams } from 'react-router-dom'
+import { db } from '../../firebase/firebase'
+import { doc, getDoc, collection } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
 
@@ -13,12 +13,27 @@ const ItemDetailContainer = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        setLoading(true)
+        const productCollection = collection(db, 'products')
+        const refDoc = doc(productCollection, id)
+        getDoc(refDoc)
+            .then((result) => {
+                setListProduct(
+                    {
+                        id:result.id,
+                        ...result.data()
+                    }
+                )
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+
+        /*setLoading(true)
         customFetch(products)
             .then(res => {
                 setLoading(false)
                 setListProduct(res.find(item => item.id === parseInt(id)))
-            })
+            })*/
     }, [])
 
     return(
