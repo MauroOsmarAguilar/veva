@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { FaShoppingCart } from "react-icons/fa"
 import { useCartContext } from '../../context/CartContext'
 
@@ -8,10 +9,30 @@ const CartWidget = () => {
 
     return(
         <>
-            <FaShoppingCart />
-            <p>{totalQuantity()}</p>
+            <CartWidgetContainer>
+                <p>{totalQuantity()}</p>
+                <FaShoppingCart />   
+            </CartWidgetContainer>
         </>
     )
 }
 
 export { CartWidget }
+
+const CartWidgetContainer = styled.div`
+    display: flex;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat';
+    color: #f2f2f2;
+
+    p{
+        text-decoration: none;
+        margin-right: 5px;
+    }
+
+  
+
+`

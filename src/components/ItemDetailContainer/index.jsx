@@ -27,14 +27,7 @@ const ItemDetailContainer = () => {
             .finally(() => {
                 setLoading(false)
             })
-
-        /*setLoading(true)
-        customFetch(products)
-            .then(res => {
-                setLoading(false)
-                setListProduct(res.find(item => item.id === parseInt(id)))
-            })*/
-    }, [])
+    }, [id])
 
     return(
         <>

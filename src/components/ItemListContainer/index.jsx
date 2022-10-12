@@ -1,6 +1,4 @@
 import { ItemList } from '../ItemList'
-/* import { products } from '../../assets/productos' */
-/* import { customFetch } from '../../Utils/customFetch' */
 import { useState, useEffect } from 'react'
 import { Spinner } from '../Spinner'
 import { useParams } from 'react-router-dom'
@@ -17,7 +15,9 @@ const ItemListContainer = ({ greeting }) => {
     useEffect(() => {
 
         const productsCollection = collection(db, 'products')
+
         const productCategory = query(productsCollection, where('category', '==', `${category}`))
+
         const urlCategory = (category === undefined ? productsCollection : productCategory)
         getDocs(urlCategory)
             .then((data) => {
@@ -32,18 +32,6 @@ const ItemListContainer = ({ greeting }) => {
             .finally(() => {
                 setLoading(false)
             })
-
-        /* setLoading(true)
-        customFetch(products)
-            .then(res => {
-                if (category) {
-                    setLoading(false)
-                    setListProducts(res.filter(prod => prod.category === category))
-                } else {
-                    setLoading(false)
-                    setListProducts(res)
-                }
-            })*/
     }, [category])
 
     return (
