@@ -21,7 +21,6 @@ export { CartWidget }
 
 const CartWidgetContainer = styled.div`
     display: flex;
-    display: flex;
     flex-direction: wrap;
     justify-content: center;
     align-items: center;
@@ -32,7 +31,4 @@ const CartWidgetContainer = styled.div`
         text-decoration: none;
         margin-right: 5px;
     }
-
-  
-
 `

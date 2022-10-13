@@ -1,12 +1,34 @@
 import styled from 'styled-components'
-import { BiX } from "react-icons/bi"
+import { BiX } from 'react-icons/bi'
 import { useCartContext } from '../../context/CartContext'
+import { db } from '../../firebase/firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const Cart = () => {
 
     const { cartList, totalPrice, removeProduct, cleanCart } = useCartContext()
 
-    console.log(cartList)
+    const dataClient = {
+        nombre: 'Mauro',
+        apellido: 'Aguilar',
+        mail: 'mauroosmaraguilar@gmail.com'
+    };
+
+    const checkoutSell = () => {
+        const sellsCollection = collection(db, 'sells')
+        addDoc(sellsCollection, {
+            client: dataClient,
+            items: cartList,
+            date: serverTimestamp(),
+            total: `${totalPrice()}`
+        })
+        .then((result) => {
+            console.log(result.id)
+            cleanCart()
+        })
+    }
+
+    
     return(
         <>
             <CartContainer>
@@ -27,6 +49,7 @@ const Cart = () => {
                     <>
                         <p className='cart__container__total'>Total: ${totalPrice()}.-</p>
                         <button onClick={cleanCart} className='cart__container__button'>Vaciar carrito</button>
+                        <button onClick={checkoutSell} className='cart__container__button'>Finalizar</button>
                     </>
                     }
                 </div>

@@ -21,8 +21,6 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
         </Routes>
         </CartContextProvider>
-        {/* <ItemDetailContainer /> */}
-        {/* <ItemListContainer greeting="Somos Veva" /> */}
       </BrowserRouter>
     </div>
   )

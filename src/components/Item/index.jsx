@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom'
 
 const Item = ({ product }) => {
     return(
-        <ProductContainer>
-            <div className='product'>
-                <div className='product__container'>
-                    <img src={product.image} alt={product.name}/>
-                    <div className='product__container__title'>
-                        <h4>{product.category}</h4>
-                        <h2>{product.name}</h2>
-                    </div>
+        <ProductContainer >
+                <div className='product__container' >
+                    <Link to={`../product/${product.id}`} style={{ textDecoration: 'none' }}>
+                        <img src={product.image} alt={product.name}/>
+                        <div className='product__container__title'>
+                            <h4>{product.category}</h4>
+                            <h2>{product.name}</h2>
+                        </div>
+                    </Link> 
                     <h3>${product.price}.-</h3>
                     <Link to={`../product/${product.id}`} className="product__container__button">
                         <h3 className='effect-underline'>VER MAS</h3>
                     </Link>
                 </div>
-            </div>
         </ProductContainer>
     )
 }
@@ -25,13 +25,9 @@ const Item = ({ product }) => {
 export { Item } 
 
 const ProductContainer = styled.div`
-    .product{
-        display: flex;
-        justify-content: center;
-        text-align: center;
         color: #f2f2f2;
         font-family: 'Montserrat';
-
+        
         .product__container{
             width: 300px;
             margin: 20px;
@@ -56,6 +52,8 @@ const ProductContainer = styled.div`
             .product__container__title{
                 margin-top: -55px;
                 text-shadow: -1px 1px 5px rgba(0,0,0,1);
+                color: #f2f2f2;
+                text-decoration: none;
                 
                 h2{
                     margin: 0;
@@ -114,5 +112,5 @@ const ProductContainer = styled.div`
                 font-size: 16px;
             }
         }
-    }
+    
 `

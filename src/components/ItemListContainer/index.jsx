@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import { ItemList } from '../ItemList'
 import { useState, useEffect } from 'react'
 import { Spinner } from '../Spinner'
@@ -42,10 +43,18 @@ const ItemListContainer = ({ greeting }) => {
             loading ?
                 <Spinner />
             :
+            <ListContainer>
                 <ItemList listProducts={listProducts} />
+            </ListContainer>
             }
         </>
     )
 }
 
 export { ItemListContainer }
+
+const ListContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+`
