@@ -19,6 +19,7 @@ const App = () => {
           <Route path="/category/:category" element={<ItemListContainer />}/>
           <Route path="/product/:id" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<Cart />} />
+          
         </Routes>
         </CartContextProvider>
       </BrowserRouter>

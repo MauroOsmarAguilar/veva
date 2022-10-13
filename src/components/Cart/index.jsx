@@ -1,34 +1,48 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { BiX } from 'react-icons/bi'
 import { useCartContext } from '../../context/CartContext'
 import { db } from '../../firebase/firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
+
 const Cart = () => {
 
     const { cartList, totalPrice, removeProduct, cleanCart } = useCartContext()
 
-    const dataClient = {
-        nombre: 'Mauro',
-        apellido: 'Aguilar',
-        mail: 'mauroosmaraguilar@gmail.com'
-    };
+    const [ dataClient, setDataClient ] = useState({
+        nombre: '',
+        apellido: '',
+        email: '',
+        telefono: ''  
+    })
+
+    const [ SaleId, setSaleId ] = useState()
 
     const checkoutSell = () => {
         const sellsCollection = collection(db, 'sells')
         addDoc(sellsCollection, {
-            client: dataClient,
+            dataClient,
             items: cartList,
             date: serverTimestamp(),
             total: `${totalPrice()}`
         })
-        .then((result) => {
-            console.log(result.id)
-            cleanCart()
-        })
+        .then((res) => {
+            setSaleId(res.id)
+            console.log(res.id)
+            /**/
+            
+        })        
     }
 
-    
+    const clientChange = (e) => {
+        const { name, value } = e.target
+        setDataClient({
+            ...dataClient, [name] : value
+        })
+    }
+    console.log(dataClient);
+
     return(
         <>
             <CartContainer>
@@ -49,11 +63,42 @@ const Cart = () => {
                     <>
                         <p className='cart__container__total'>Total: ${totalPrice()}.-</p>
                         <button onClick={cleanCart} className='cart__container__button'>Vaciar carrito</button>
-                        <button onClick={checkoutSell} className='cart__container__button'>Finalizar</button>
+                        <div className='cart__form'>
+                            <p>Completa con tus datos para finalizar la compra:</p>
+                            <form onSubmit={checkoutSell} onChange={clientChange}>
+				                <input
+					                type="text"
+    					            placeholder="Nombre"
+	    			    	        name="nombre"
+		    	    		        onChange={clientChange}
+		        		        />
+	    		    	        <input
+    				    	        type="text"
+					                placeholder="Apellido"
+					                name="apellido"
+                                    onChange={clientChange}
+    				            />
+	    		    	        <input
+		            		        type="text"
+	            			        placeholder="Email"
+        		    		        name="email"
+                                    onChange={clientChange}
+				                />
+                                <input
+		        		            type="text"
+    	        			        placeholder="Teléfono"
+            				        name="telefono"
+                                    onChange={clientChange}
+			    	            />
+                            </form>
+                        <button onClick={checkoutSell} className='cart__container__button'>Finalizar compra</button>
+                    </div>
+                        <p>¡Hola, {dataClient.nombre}! Gracias por elegirnos. ¡Tu compra se ha realizado exitosamente!</p>
+                        <p>Tu ID de compra es {SaleId}</p>
                     </>
                     }
                 </div>
-            </CartContainer>
+            </CartContainer>            
         </>
     )
 }
@@ -125,7 +170,9 @@ const CartContainer = styled.div`
     }
 
     .cart__container__button{
-        margin: 10px;
+        display: flex;
+        justify-content: center;
+        margin: 10px 0 10px 0;
         padding: 10px;
         border: none;
         border-radius: 5px;
@@ -138,5 +185,11 @@ const CartContainer = styled.div`
 
     .cart__container__button:hover{
         background-color: #353535;
+    }
+
+    .cart__form{
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
     }
 `
