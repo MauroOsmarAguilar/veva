@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Logo from './Logo'
+import Logo from './Logos/Logo'
 import BurgerButton from './BurgerButton'
 import { CartWidget } from './CartWidget'
 import { Link } from 'react-router-dom'
@@ -16,7 +16,6 @@ function Navbar() {
                 <Logo to={"/"} className='navlist'/>
                 <div className={`links ${clicked ? 'active' : ''}`}>
                     <Link onClick={handleClick} to="/" className='navlist'>HOME</Link>
-                    <Link onClick={handleClick} to="#h" className='navlist'>DESIGN</Link>
                     <Link onClick={handleClick} to="#h" className='navlist'>NOSOTROS</Link>
                     <Link onClick={handleClick} to="#h" className='navlist'>CONTACTO</Link>
                 </div>
@@ -86,6 +85,7 @@ const NavContainer = styled.nav`
         right: 0;
         text-align: center;
         z-index: 2;
+        
 
         .navlist {
             font-family: 'Montserrat';
@@ -96,7 +96,7 @@ const NavContainer = styled.nav`
     }
 
     .burger {
-        z-index: 3;
+        z-index: 1;
 
         @media(min-width: 768px){
             display: none;
@@ -105,8 +105,8 @@ const NavContainer = styled.nav`
 `
 
 const BgDiv = styled.div`
-    background-color: #151515;
-    position: absolute;
+    background-color: transparent;
+    position: fixed;
     top: -1000px;
     width: 100%;
     height: 100%;
@@ -114,6 +114,7 @@ const BgDiv = styled.div`
     transition: all .6s ease-in-out ;
   
     &.active{
+        background-color: #151515;
         top: 0;
         left: 0;
         width: 100%;

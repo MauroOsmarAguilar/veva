@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Warning from '../Logos/Warning'
 import { ItemCount } from '../ItemCount'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -20,6 +21,13 @@ const ItemDetail = ({ listProduct }) => {
         <>
             <ProductDetailContainer>
                 <div className='product__detail'>
+                    <div className='product__detail__menu'>
+                        <Link to="/">productos</Link>
+                        <span>/</span>
+                        <Link to={`../category/${listProduct.category}`}>{listProduct.category}</Link>
+                        <span>/</span>
+                        <div className='product__detail__menu__name'>{listProduct.name}</div>
+                    </div>
                     <div className='product__detail__container'>
                         <img src={listProduct.image} alt={listProduct.name}/>
                         <div className='product__detail__container__info'>
@@ -38,9 +46,15 @@ const ItemDetail = ({ listProduct }) => {
                                 <ItemCount initial={1} stock={listProduct.stock} onAdd={onAdd}/>
                             }                            
                             <div className='product__detail__container__info__i'>
+                                <p>Talles disponibles: del S al XXL.</p>
+                                <div className='product__detail__container__info__i__size'>Al momento de realizar la compra nos pondremos en contacto para consultar las medidas.</div>
                                 <p>Los tiempos previstos de producción pueden ser entre 2 a 5 días hábiles. Si la prenda ya está en stock, se coordina el envío y entrega al día siguiente o cuando lo prefieras.</p>                            
                             </div>
                         </div>
+                    </div>
+                    <div className='product__detail__size'>
+                        <Warning />
+                        <p>¡Acordate que todas nuestras prendas son personalizadas! Para más información consultá los talles disponibles.</p>
                     </div>
                 </div>
             </ProductDetailContainer>
@@ -51,15 +65,38 @@ const ItemDetail = ({ listProduct }) => {
 export { ItemDetail }
 
 const ProductDetailContainer = styled.div`
-    .product__detail{
+    display: flex;
+    flex-direction: column;
+
+    .product__detail__menu{
         display: flex;
-        justify-content: center;
+        margin: 15px 10px;
+        color: #f2f2f2;
+        font-family: 'Montserrat';
+        
+        a{
+            margin: 0px 10px;
+            text-decoration: none;
+            color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        a:hover{
+            text-decoration: underline;
+        }
+
+        .product__detail__menu__name{
+            margin: 0px 10px;
+            font-weight: lighter;
+        }
+    }
+
+    .product__detail{
         alig-items: center;
         align-self: center;
         max-width: 800px;
         text-decoration: none;
         margin: 0 auto;
-        
 
         .product__detail__container{
             display: flex;
@@ -103,11 +140,24 @@ const ProductDetailContainer = styled.div`
 
         .product__detail__container__info__i{
             background-color: #f2f2f2af;
-            color: #151515;
-            font-size: 12px;
             margin: 5px;
             padding: 10px;
             border-radius: 5px;
+
+            p{
+                color: #151515;
+                font-size: 12px;
+            }
+
+            .product__detail__container__info__i__size{
+                margin: 5px;
+                color: #151515;
+                border: 1px solid #151515af;
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 14px;
+                
+            }
         }
 
         .product__detail__container__info__cart{
@@ -122,6 +172,11 @@ const ProductDetailContainer = styled.div`
             cursor: pointer;
             transition: .3s cubic-bezier(.8, .5, .2);
             transition-duration: 500ms;
+            text-decoration: none;
+        }
+        
+        a{
+            text-decoration: none;
         }
 
         .product__detail__container__info__cart:hover{
@@ -136,6 +191,21 @@ const ProductDetailContainer = styled.div`
             img{
                 min-width: 95%;
             }
+        }
+    }
+
+    .product__detail__size{
+        display: flex;
+        margin: 10px;
+        border: 1px solid #f2f2f2af;
+        border-radius: 5px;
+        padding: 10px;
+        color: #f2f2f2;
+        font-family: 'Montserrat';
+
+        svg{
+            min-width: 70px;
+            margin: 10px;
         }
     }
 `

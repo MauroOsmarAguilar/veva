@@ -27,8 +27,8 @@ const CartWidgetContainer = styled.div`
     font-family: 'Montserrat';
     color: #f2f2f2;
 
-    p{
-        text-decoration: none;
-        margin-right: 5px;
-    }
+        p{
+            margin-right: 5px;
+            text-decoration: none;
+        }
 `

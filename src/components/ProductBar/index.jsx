@@ -75,6 +75,15 @@ const ProductBarContainer = styled.div`
         transition: 0.3s;
     }
 }
+@media(max-width: 500px){
+    display: flex;
+    font-size: .6rem;
+}
+@media(max-width: 375px){
+    display: flex;
+    font-size: .5rem;
+}
+
 `
 
 

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { BiX } from 'react-icons/bi'
 import { useCartContext } from '../../context/CartContext'
 import { db } from '../../firebase/firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { Link } from 'react-router-dom'
 
 
 const Cart = () => {
@@ -29,9 +29,7 @@ const Cart = () => {
         })
         .then((res) => {
             setSaleId(res.id)
-            console.log(res.id)
-            /**/
-            
+            console.log(res.id)           
         })        
     }
 
@@ -41,7 +39,6 @@ const Cart = () => {
             ...dataClient, [name] : value
         })
     }
-    console.log(dataClient);
 
     return(
         <>
@@ -49,7 +46,7 @@ const Cart = () => {
                 <div className='cart__container'>
                     {cartList.map(prod =>
                         <div key={prod.id} className='cart__container__item'>
-                            <button onClick={() => removeProduct(prod.id)} className='cart__container__item__delete'><BiX/></button>
+                            <button onClick={() => removeProduct(prod.id)} className='cart__container__item__delete'>X</button>
                             <img src={prod.image} alt={prod.image}/>
                             <p className='cart__container__item__info'>{prod.category}</p>
                             <p>{prod.name}</p>
@@ -62,7 +59,10 @@ const Cart = () => {
                     :
                     <>
                         <p className='cart__container__total'>Total: ${totalPrice()}.-</p>
-                        <button onClick={cleanCart} className='cart__container__button'>Vaciar carrito</button>
+                        <div className='cart__container__options'>
+                            <button onClick={cleanCart} className='cart__container__options__button'>Vaciar carrito</button>
+                            <Link to='/'><button className='cart__container__options__button'>Ver más diseños</button></Link>
+                        </div>
                         <div className='cart__form'>
                             <p>Completa con tus datos para finalizar la compra:</p>
                             <form onSubmit={checkoutSell} onChange={clientChange}>
@@ -169,24 +169,38 @@ const CartContainer = styled.div`
         padding: 10px;
     }
 
-    .cart__container__button{
+    .cart__container__options{
         display: flex;
-        justify-content: center;
-        margin: 10px 0 10px 0;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #252525;
-        color: #f2f2f2;
-        transition: .3s cubic-bezier(.8, .5, .2);
-        transition-duration: 500ms;
-    }
+        flex-direction: wrap;
+        justify-content: space-around;
+        margin: 10px 0px;
+        width: 100%;
 
-    .cart__container__button:hover{
-        background-color: #353535;
-    }
+        a{
+            width: 100%;
+            padding-right: 20px;
+        }
 
+        .cart__container__options__button{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #252525;
+            color: #f2f2f2;
+            transition: .3s cubic-bezier(.8, .5, .2);
+            transition-duration: 500ms;
+        }
+    
+        .cart__container__options__button:hover{
+            background-color: #353535;
+        }    
+    }
+    
     .cart__form{
         display: flex;
         flex-direction: column;
