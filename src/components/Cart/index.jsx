@@ -8,8 +8,10 @@ import { Link } from 'react-router-dom'
 
 const Cart = () => {
 
+    // Agrega elementos del contexto
     const { cartList, totalPrice, removeProduct, cleanCart } = useCartContext()
 
+    // Campos para el estado de cliente
     const [ dataClient, setDataClient ] = useState({
         nombre: '',
         apellido: '',
@@ -19,6 +21,7 @@ const Cart = () => {
 
     const [ SaleId, setSaleId ] = useState()
 
+    // Contiene la información a enviar a la base de datos
     const checkoutSell = () => {
         const sellsCollection = collection(db, 'sells')
         addDoc(sellsCollection, {
@@ -91,7 +94,7 @@ const Cart = () => {
                                     onChange={clientChange}
 			    	            />
                             </form>
-                        <button onClick={checkoutSell} className='cart__container__button'>Finalizar compra</button>
+                        <button onClick={checkoutSell} className='cart__form__button'>Continuar compra</button>
                     </div>
                         <p>¡Hola, {dataClient.nombre}! Gracias por elegirnos. ¡Tu compra se ha realizado exitosamente!</p>
                         <p>Tu ID de compra es {SaleId}</p>
@@ -203,7 +206,53 @@ const CartContainer = styled.div`
     
     .cart__form{
         display: flex;
+        justify-content: center;
         flex-direction: column;
+        flex-wrap: wrap;
+        border-radius: 10px;
+        background: rgb(21,21,21);
+        background: linear-gradient(230deg, rgba(21,21,21,1) 0%, rgba(53,53,53,1) 100%);
         margin: 10px;
+        padding: 0px 10px;
+        text-align: center;
+
+        p{
+            margin: 10px;
+            padding: 10px 0px;
+            border-bottom: 1px solid #353535af;
+        }
+
+        input{  
+            margin: 10px;
+            padding: 10px; 
+            border: 1px solid #f2f2f2af; 
+            border-radius: 5px; 
+            background-color: #f2f2f2; 
+            color: #151515; 
+            drop-shadow: 0px 0px 20px 0px rgba(42,42,42,.75); 
+            font-size: 14px;  
+        }
+
+        input:focus{ 
+            outline:none; 
+        } 
+
+        .cart__form__button{
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #f2f2f2af; 
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #252525;
+            color: #f2f2f2;
+            transition: .3s cubic-bezier(.8, .5, .2);
+            transition-duration: 500ms;
+        }
+
+        .cart__form__button:hover{
+            background-color: #353535;
+        }
     }
 `

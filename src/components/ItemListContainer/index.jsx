@@ -15,10 +15,13 @@ const ItemListContainer = () => {
 
     useEffect(() => {
 
+        // Muestra los productos
         const productsCollection = collection(db, 'products')
 
+        // Muestra categoría de productos
         const productCategory = query(productsCollection, where('category', '==', `${category}`))
 
+        // Crea una URL
         const urlCategory = (category === undefined ? productsCollection : productCategory)
         getDocs(urlCategory)
             .then((data) => {

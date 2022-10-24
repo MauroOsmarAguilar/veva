@@ -3,11 +3,14 @@ import styled from 'styled-components'
 
 const ItemCount = ({ initial, stock, onAdd }) => {
 
+    // Plantear estado inicial
     const [count, setCount] = useState(initial)
 
+    // Aumentar o disminuir cantidad
     const increase = () => count < stock && setCount(count + 1)
     const decrease = () => count > initial && setCount(count - 1) 
 
+    // Agrega al contador
     const handleclick = () => onAdd(count)
 
     return(

@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from './components/NavBar'
+import Navbar from './components/Navbar'
 import ProductBar from './components/ProductBar'
 import Footer from './components/Footer'
 import { ItemListContainer } from './components/ItemListContainer'
@@ -10,7 +10,6 @@ import { CartContextProvider } from './context/CartContext'
 
 const App = () => {
   return (
-    <div>
       <BrowserRouter>
         <CartContextProvider>
           <Navbar />
@@ -24,7 +23,6 @@ const App = () => {
         </CartContextProvider>
         <Footer />
       </BrowserRouter>
-    </div>
   )
 }
 

@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Logo from './Logos/Logo'
-import BurgerButton from './BurgerButton'
-import { CartWidget } from './CartWidget'
+import Logo from '../Logos/Logo'
+import BurgerButton from '../BurgerButton'
+import { CartWidget } from '../CartWidget'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+    // Clickeo de los links
     const [clicked, setClicked] = useState(false)
-    const handleClick = () => {
-        setClicked(!clicked)
+    const handleClick = () => { 
+        // Para que no se active el menú desplegable
+        if(window.innerWidth < 768) {
+            setClicked(!clicked);
+        }
     }
+    
     return (
         <>
             <NavContainer>
                 <Logo to={"/"} className='navlist'/>
                 <div className={`links ${clicked ? 'active' : ''}`}>
                     <Link onClick={handleClick} to="/" className='navlist'>HOME</Link>
-                    <Link onClick={handleClick} to="#h" className='navlist'>NOSOTROS</Link>
-                    <Link onClick={handleClick} to="#h" className='navlist'>CONTACTO</Link>
+                    <Link onClick={handleClick} to="/" className='navlist'>NOSOTROS</Link>
+                    <Link onClick={handleClick} to="/" className='navlist'>CONTACTO</Link>
                 </div>
                 <Link to={"/cart"}>
                     <CartWidget />
@@ -96,7 +101,7 @@ const NavContainer = styled.nav`
     }
 
     .burger {
-        z-index: 1;
+        z-index: 2;
 
         @media(min-width: 768px){
             display: none;
