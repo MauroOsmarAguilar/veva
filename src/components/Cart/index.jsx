@@ -72,7 +72,7 @@ const Cart = () => {
                 <div className='cart__container'>
                     {cartList.map(prod =>
                         <div key={prod.id} className='cart__container__item'>
-                            <button onClick={() => removeProduct(prod.id)} className='cart__container__item__delete'>X</button>
+                            <button onClick={() => removeProduct(prod.id)} className='cart__container__item__delete'>x</button>
                             <img src={prod.image} alt={prod.image}/>
                             <p className='cart__container__item__info'>{prod.category}</p>
                             <p>{prod.name}</p>
@@ -120,19 +120,9 @@ const Cart = () => {
                             <button onClick={SaleEnd} className='cart__form__button'>Continuar compra</button>
                         </div>
                         <ChakraProvider>
-                            <Modal isOpen={isOpen} onClose={onClose}> 
-                                <ModalOverlay backgroundColor='#010101af'/>
-                                <ModalContent 
-                                    bgGradient="linear(to-t, #151515, #353535)"
-                                    color='#f2f2f2'
-                                    border='1px'
-                                    borderColor='#f2f2f2af'
-                                    borderRadius="15"
-                                    fontFamily='Montserrat'
-                                    fontSize={14}
-                                    letterSpacing={1}
-                                    textAlign='center'
-                                    >
+                            <Modal isCentered isOpen={isOpen} onClose={onClose}> 
+                                <ModalOverlay backgroundColor='#010101d9'/>
+                                <ModalContent bgGradient="linear(to-t, #151515, #353535)" color='#f2f2f2' border='1px' borderColor='#656565' borderRadius="10" fontFamily='Montserrat' fontStyle='italic' fontSize={14} letterSpacing={1} textAlign='center'>
                                     <ModalHeader fontSize={18}>¡Gracias por elegirnos!</ModalHeader>
                                     <ModalCloseButton />
                                     <ModalBody>
@@ -140,19 +130,16 @@ const Cart = () => {
                                         <Center>
                                             <Logo />
                                         </Center>
-                                        <p>¡Hola, {dataClient.nombre}!  ¡Tu compra se ha realizado exitosamente!</p>
-                                        <p>Tu ID de compra es {SaleId}</p>
+                                        <p>¡Hola, {dataClient.nombre}! Tu compra por ${totalPrice()}.- está lista.</p><br />
+                                        <p>Tu ID de compra es {SaleId}.</p><br />
+                                        <p>En breve nos estaremos comunicando por WhatsApp para conocer tus medidas y coordinar la entrega.</p>
                                     </ModalBody>
                                     <ModalFooter>
-                                        <Button 
-                                            mr={3} 
-                                            onClick={onClose}
-                                            backgroundColor='#252525' 
-                                            color='#f2f2f2'
-                                            borderRadius="5"
-                                            fontSize={14}>
-                                            Cerrar
-                                        </Button>
+                                        <Link to='/'>
+                                                <Button mr={5} onClick={onClose} backgroundColor='#252525' color='#f2f2f2' borderRadius="5" fontSize={12} _hover={{ bg: '#353535' }}>
+                                                    Volver al inicio
+                                                </Button>
+                                        </Link>
                                     </ModalFooter>
                                 </ModalContent>
                             </Modal>
@@ -207,6 +194,7 @@ const CartContainer = styled.div`
             position: absolute;
             border: 1px solid #555555;
             border-radius: 100px;
+            width: 25px;
             height: 25px;
             cursor: pointer;
             background-color: #252525;

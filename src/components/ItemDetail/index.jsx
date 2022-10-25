@@ -54,7 +54,7 @@ const ItemDetail = ({ listProduct }) => {
                     </div>
                     <div className='product__detail__size'>
                         <Warning />
-                        <p>¡Acordate que todas nuestras prendas son personalizadas! Para más información consultá los talles disponibles.</p>
+                        <p>¡Acordate que todas nuestras prendas son personalizadas! Antes de realizar la compra te pediremos tus medidas</p>
                     </div>
                 </div>
             </ProductDetailContainer>
