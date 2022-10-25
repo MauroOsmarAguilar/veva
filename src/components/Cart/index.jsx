@@ -4,6 +4,21 @@ import { useCartContext } from '../../context/CartContext'
 import { db } from '../../firebase/firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { Link } from 'react-router-dom'
+import Logo from '../Logos/Logo'
+import { 
+    Center,
+    ChakraProvider,
+    Button,
+    Modal, 
+    ModalOverlay, 
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure
+} from '@chakra-ui/react'
+
 
 
 const Cart = () => {
@@ -31,8 +46,7 @@ const Cart = () => {
             total: `${totalPrice()}`
         })
         .then((res) => {
-            setSaleId(res.id)
-            console.log(res.id)           
+            setSaleId(res.id)          
         })        
     }
 
@@ -41,6 +55,15 @@ const Cart = () => {
         setDataClient({
             ...dataClient, [name] : value
         })
+    }
+
+    // Genera estado en el modal
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    // Agrupa funciones de modal y datos
+    const SaleEnd = () => {
+        checkoutSell()
+        onOpen()
     }
 
     return(
@@ -94,10 +117,46 @@ const Cart = () => {
                                     onChange={clientChange}
 			    	            />
                             </form>
-                        <button onClick={checkoutSell} className='cart__form__button'>Continuar compra</button>
-                    </div>
-                        <p>¡Hola, {dataClient.nombre}! Gracias por elegirnos. ¡Tu compra se ha realizado exitosamente!</p>
-                        <p>Tu ID de compra es {SaleId}</p>
+                            <button onClick={SaleEnd} className='cart__form__button'>Continuar compra</button>
+                        </div>
+                        <ChakraProvider>
+                            <Modal isOpen={isOpen} onClose={onClose}> 
+                                <ModalOverlay backgroundColor='#010101af'/>
+                                <ModalContent 
+                                    bgGradient="linear(to-t, #151515, #353535)"
+                                    color='#f2f2f2'
+                                    border='1px'
+                                    borderColor='#f2f2f2af'
+                                    borderRadius="15"
+                                    fontFamily='Montserrat'
+                                    fontSize={14}
+                                    letterSpacing={1}
+                                    textAlign='center'
+                                    >
+                                    <ModalHeader fontSize={18}>¡Gracias por elegirnos!</ModalHeader>
+                                    <ModalCloseButton />
+                                    <ModalBody>
+                                        <p>Ahora vos también sos parte de</p>
+                                        <Center>
+                                            <Logo />
+                                        </Center>
+                                        <p>¡Hola, {dataClient.nombre}!  ¡Tu compra se ha realizado exitosamente!</p>
+                                        <p>Tu ID de compra es {SaleId}</p>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button 
+                                            mr={3} 
+                                            onClick={onClose}
+                                            backgroundColor='#252525' 
+                                            color='#f2f2f2'
+                                            borderRadius="5"
+                                            fontSize={14}>
+                                            Cerrar
+                                        </Button>
+                                    </ModalFooter>
+                                </ModalContent>
+                            </Modal>
+                        </ChakraProvider>
                     </>
                     }
                 </div>
@@ -114,6 +173,8 @@ const CartContainer = styled.div`
     margin: 0 auto;
     color: #f2f2f2;
     font-family: 'Montserrat';
+    background: #151515 no-repeat; 
+    background-image: linear-gradient(to right top, #040404, #0d0d0d, #141414, #191919, #1e1e1e, #1f1f1f, #212121, #222222, #202020, #1e1e1e, #1c1c1c, #1a1a1a);
 
     .cart__container__item{
         display: inline-block;
@@ -242,10 +303,10 @@ const CartContainer = styled.div`
             justify-content: center;
             margin: 10px;
             padding: 10px;
-            border: 1px solid #f2f2f2af; 
+            
             border-radius: 5px;
             cursor: pointer;
-            background-color: #252525;
+            background-color: #151515;
             color: #f2f2f2;
             transition: .3s cubic-bezier(.8, .5, .2);
             transition-duration: 500ms;
