@@ -8,10 +8,9 @@ import { useCartContext } from '../../context/CartContext'
 
 const ItemDetail = ({ listProduct }) => {
 
+    // Plantea agregar al carrito
     const [isAdded, setIsAdded] = useState(false)
-
     const { addToCart } = useCartContext()
-
     const onAdd = (quantity) => {
         addToCart(listProduct, quantity)
         setIsAdded(true)

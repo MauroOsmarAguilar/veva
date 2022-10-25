@@ -5,10 +5,13 @@ export const useCartContext = () => useContext(CartContext)
 
 export function CartContextProvider({ children }) {
 
+    // Estado de carrito
     const [cartList, setCartList] = useState([])
 
+    // Agrega al carrito
     const isInCart = (id) => cartList.find(prod => prod.id === id)
 
+    // Agrega al carrito y mide cantidad
     const addToCart = (item, quantity) => {
         if (isInCart(item.id)) {
             const newCart = cartList.map(prod => {
@@ -26,14 +29,18 @@ export function CartContextProvider({ children }) {
         }
     }
 
+    // Borra del carrito
     const removeProduct = (id) => setCartList(cartList.filter(prod => prod.id !== id))
 
+    // Limpia carrito
     const cleanCart = () => setCartList([])
 
+    // Calcula precio total
     const totalPrice = () => {
         return cartList.reduce((acc, product) => acc += (product.price * product.quantity), 0)
     }
 
+    // Calcula cantidad de productos
     const totalQuantity = () => {
         return cartList.reduce((acc, product) => acc += product.quantity, 0)
     }

@@ -7,8 +7,12 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
 
+    // Links externos a redes sociales
     const InstagramLink = () => {
         window.open('https://www.instagram.com/somos.veva', '_blank')
+    }
+    const WhatsappLink = () => {
+        window.open('https://wa.me/+5491153295919', '_blank')
     }
 
     return(
@@ -18,7 +22,7 @@ const Footer = () => {
                         <Link className='footer__container__list__item' onClick={InstagramLink}>
                             <InstagramLogo /> 
                         </Link>
-                        <Link className='footer__container__list__item' onClick={InstagramLink}>
+                        <Link className='footer__container__list__item' onClick={WhatsappLink}>
                             <WhatsappLogo />
                         </Link>
                 </div>
